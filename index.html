@@ -4,19 +4,19 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Letbee — Story to Screen</title>
-<meta name="description" content="Letbee converts your stories into production-ready screenplays using AI. Paste your story, pick a genre, and get a multi-pass reviewed screenplay with scene metadata, visual direction, and multilingual support.">
-<link rel="canonical" href="https://llulllab.com/LetBee/">
+<title>Cedulia — Story to Screen</title>
+<meta name="description" content="Cedulia converts your stories into production-ready screenplays using AI. Paste your story, pick a genre, and get a multi-pass reviewed screenplay with scene metadata, visual direction, and multilingual support.">
+<link rel="canonical" href="https://llulllab.com/Cedulia/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://llulllab.com/LetBee/">
-<meta property="og:title" content="Letbee — Story to Screen">
+<meta property="og:url" content="https://llulllab.com/Cedulia/">
+<meta property="og:title" content="Cedulia — Story to Screen">
 <meta property="og:description" content="Convert your stories into production-ready screenplays with AI. Multi-pass review, scene metadata, visual direction, and multilingual support.">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Letbee — Story to Screen">
+<meta name="twitter:title" content="Cedulia — Story to Screen">
 <meta name="twitter:description" content="Convert your stories into production-ready screenplays with AI. Multi-pass review, scene metadata, and multilingual support.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.88em' font-size='85'>🎬</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -310,7 +310,7 @@ select option{background:var(--bg-surface)}
 <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
 
 <header class="site-header">
-  <div class="logo-area"><div><div class="logo-mark">LETBEE</div><div class="logo-sub">Story to Screen</div></div></div>
+  <div class="logo-area"><div><div class="logo-mark">Cedulia</div><div class="logo-sub">Story to Screen</div></div></div>
   <div class="header-right">
     <button class="icon-btn" id="resetBtn" type="button" aria-label="New conversion" title="New conversion"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></button>
     <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme"><svg viewBox="0 0 24 24" id="themeIcon"></svg></button>
@@ -381,8 +381,8 @@ select option{background:var(--bg-surface)}
   var MOON='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
   var SUN='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
   var themeIcon=document.getElementById('themeIcon'),curTheme;
-  try{curTheme=localStorage.getItem('letbee-theme')||'dark'}catch(e){curTheme='dark'}
-  function setTheme(t){curTheme=t;document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('letbee-theme',t)}catch(e){}themeIcon.innerHTML=t==='dark'?MOON:SUN}
+  try{curTheme=localStorage.getItem('Cedulia-theme')||'dark'}catch(e){curTheme='dark'}
+  function setTheme(t){curTheme=t;document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('Cedulia-theme',t)}catch(e){}themeIcon.innerHTML=t==='dark'?MOON:SUN}
   document.getElementById('themeToggle').addEventListener('click',function(){setTheme(curTheme==='dark'?'light':'dark')});
   setTheme(curTheme);
 
@@ -419,7 +419,7 @@ select option{background:var(--bg-surface)}
     var story=storyInput.value.trim();if(story.length<50){showToast('Please write at least 50 characters.','error');storyInput.focus();return}
     submitBtn.disabled=true;submitBtn.classList.add('loading');showState('processing');
     var msgIdx=0,msgInterval=setInterval(function(){msgIdx=(msgIdx+1)%procMsgs.length;processingText.textContent=procMsgs[msgIdx].text;processingStep.textContent=procMsgs[msgIdx].step},4000);
-    try{var res=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({story:story,title:titleInput.value.trim()||'Untitled',genre:genreSelect.value,language:langSelect.value,target_length:'auto',session_id:'letbee_'+Date.now()})});
+    try{var res=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({story:story,title:titleInput.value.trim()||'Untitled',genre:genreSelect.value,language:langSelect.value,target_length:'auto',session_id:'Cedulia_'+Date.now()})});
     clearInterval(msgInterval);if(!res.ok){var ed=await res.json().catch(function(){return{}});throw new Error(ed.error||'Server error: '+res.status)}
     var data=await res.json();if(!data.success)throw new Error(data.error||'Conversion failed');
     resultData=data;tabScreenplay.innerHTML=renderScreenplay(data.screenplay);tabReport.innerHTML=renderReport(data.quality_report);tabScenes.innerHTML=renderScenes(data.scenes);
