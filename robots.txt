@@ -10,4 +10,4 @@ Disallow: /
 User-agent: CCBot
 Disallow: /
 
-Sitemap: https://llulllab.com/LetBee/sitemap.xml
+Sitemap: https://llulllab.com/Cedulia/sitemap.xml
